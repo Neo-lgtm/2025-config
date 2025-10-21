@@ -25,7 +25,7 @@ eureka:
   instance:
     hostname: localhost
     prefer-ip-address: true           # utilise l’adresse IP plutôt que le hostname
-    instance-id: MS:${spring.application.name}:${spring.profiles.active}:{server.port} # identifie chaque instance
+    instance-id: MS:${spring.application.name}:${spring.profiles.active}:${server.port} # identifie chaque instance
 
   client:
     service-url:
