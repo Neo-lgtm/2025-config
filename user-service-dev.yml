@@ -9,7 +9,7 @@ logging:
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:file:~/pfe2
+    url: jdbc:h2:file:~/user-db-dev
     serverName : localhost
     username: sa
     password : password
