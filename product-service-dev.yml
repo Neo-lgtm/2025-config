@@ -6,7 +6,7 @@ logging:
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:file:~/product-db-dev-${server.port}
+    url: jdbc:h2:file:~/product-db-${spring.profiles.active}-${server.port}
     serverName : localhost
     username: sa
     password : password
@@ -22,6 +22,12 @@ spring:
       path: /h2-console
 
 eureka:
+
+  instance:
+    hostname: localhost
+    prefer-ip-address: true           # utilise l’adresse IP plutôt que le hostname
+    instance-id: ${spring.application.name}:${spring.profiles.active}:${server.port} # identifie chaque instance
+
   client:
     service-url:
       default-zone: http://localhost:8761
