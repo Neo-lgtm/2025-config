@@ -6,7 +6,7 @@ logging:
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:file:~/product-db-qua
+    url: jdbc:h2:file:~/product-db-qua-${server.port}
     serverName : localhost
     username: sa
     password : password
