@@ -25,6 +25,10 @@ spring:
       path: /h2-console
 
 eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true           # utilise l’adresse IP plutôt que le hostname
+    instance-id: ${spring.application.name}:${server.port} # identifie chaque instance
   client:
     service-url:
       default-zone : http://http://localhost:8761/
