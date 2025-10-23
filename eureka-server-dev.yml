@@ -1,6 +1,4 @@
 eureka:
   client:
-    register-with-eureka : false
+    register-with-eureka: false
     fetch-registry: false
-  server:
-    enable-self-preservation: false # (facultatif) utile pour les tests : supprime rapidement les services inactifs
