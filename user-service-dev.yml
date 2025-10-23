@@ -21,18 +21,6 @@ spring:
       enabled: true
       path: /h2-console
 
-eureka:
-  instance:
-    hostname: localhost
-    prefer-ip-address: true
-    # utilise l’adresse IP plutôt que le hostname
-    # identifie chaque instance
-    instance-id: ${spring.application.name}:${spring.profiles.active}:${server.port}
-  client:
-    service-url:
-      default-zone : http://http://localhost:8761/
-    register-with-eureka: true
-    fetch-registry: true
 
 
 management:
