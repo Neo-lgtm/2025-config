@@ -1,0 +1,45 @@
+server:
+  port: 8080  # le port du gateway
+
+spring:
+  application:
+    name: gateway-server
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true               # Active la découverte automatique via Eureka
+          lower-case-service-id: true # Les noms de services seront en minuscules
+      routes:
+        # Exemple de route statique vers un service d'authentification
+        - id: auth-service
+          uri: lb://auth-service      # "lb://" = load-balanced (Eureka)
+          predicates:
+            - Path=/auth/**           # Intercepte toutes les requêtes /auth/**
+          filters:
+            - StripPrefix=1           # Supprime le préfixe "/auth" avant d?envoyer au service
+
+        # Exemple de route vers un service utilisateur
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/users/**
+          filters:
+            - StripPrefix=1
+
+    # Configuration Eureka (optionnelle mais recommandée)
+    netflix:
+      eureka:
+        discovery:
+          client:
+            serviceUrl:
+              defaultZone: http://localhost:8761/eureka/
+        instance:
+          prefer-ip-address: true
+
+# Logs utiles pour le debug Gateway
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: DEBUG
