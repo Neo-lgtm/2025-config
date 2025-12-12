@@ -1,7 +1,6 @@
 logging:
   level:
     org.springframework: INFO
-    ma.gov.pfe: DEBUG
     com.netflix.discovery: DEBUG
     com.netflix.eureka: DEBUG
 

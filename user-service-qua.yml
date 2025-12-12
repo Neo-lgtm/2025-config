@@ -1,7 +1,6 @@
 logging:
   level:
     org.springframework: INFO
-    ma.gov.pfe: DEBUG
 
 spring:
   datasource:
