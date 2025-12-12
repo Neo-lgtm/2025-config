@@ -28,7 +28,7 @@ eureka:
     instance-id: ${spring.application.name}-${spring.profiles.active}-${server.port}
   client:
     service-url:
-      default-zone: http://localhost:8080 # workaround
+      default-zone: http://localhost:8761 # workaround
     register-with-eureka: true
     fetch-registry: true
 
