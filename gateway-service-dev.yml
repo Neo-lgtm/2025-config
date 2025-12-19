@@ -9,26 +9,38 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true               # Active la découverte automatique via Eureka
+          enabled: true               # Active la d?couverte automatique via Eureka
           lower-case-service-id: true # Les noms de services seront en minuscules
       routes:
-        # Exemple de route statique vers un service d'authentification
-        - id: auth-service
-          uri: lb://auth-service      # "lb://" = load-balanced (Eureka)
-          predicates:
-            - Path=/auth/**           # Intercepte toutes les requêtes /auth/**
-          filters:
-            - StripPrefix=1           # Supprime le préfixe "/auth" avant d?envoyer au service
-
-        # Exemple de route vers un service utilisateur
         - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/users/**
           filters:
             - StripPrefix=1
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/products/**
+          filters:
+            - StripPrefix=1
+      #   # Exemple de route statique vers un service d'authentification
+      #   - id: auth-service
+      #     uri: lb://auth-service      # "lb://" = load-balanced (Eureka)
+      #     predicates:
+      #       - Path=/auth/**           # Intercepte toutes les requ?tes /auth/**
+      #     filters:
+      #       - StripPrefix=1           # Supprime le pr?fixe "/auth" avant d?envoyer au service
 
-    # Configuration Eureka (optionnelle mais recommandée)
+      #   # Exemple de route vers un service utilisateur
+      #   - id: user-service
+      #     uri: lb://user-service
+      #     predicates:
+      #       - Path=/users/**
+      #     filters:
+      #       - StripPrefix=1
+
+    # Configuration Eureka (optionnelle mais recommand?e)
     netflix:
       eureka:
         discovery:
@@ -37,6 +49,7 @@ spring:
               defaultZone: http://localhost:8761/eureka/
         instance:
           prefer-ip-address: true
+          instance-id: ${spring.application.name}-${spring.profiles.active}-${server.port}
 
 # Logs utiles pour le debug Gateway
 logging:
