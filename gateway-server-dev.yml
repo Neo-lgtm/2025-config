@@ -16,14 +16,14 @@ spring:
           uri: lb://user-service
           predicates:
             - Path=/users/**
-          filters:
-            - StripPrefix=1
+#          filters:
+#            - StripPrefix=1
         - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/products/**
-          filters:
-            - StripPrefix=1
+#          filters:
+#            - StripPrefix=1
       #   # Exemple de route statique vers un service d'authentification
       #   - id: auth-service
       #     uri: lb://auth-service      # "lb://" = load-balanced (Eureka)
